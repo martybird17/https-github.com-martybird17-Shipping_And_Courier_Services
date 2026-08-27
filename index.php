@@ -8,60 +8,64 @@
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="assets/ico/favicon.png">
     <!-- Bootstrap CSS -->
-    <link href="css/cssreset.css" rel="stylesheet" />
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/main.css" rel="stylesheet" />
+    <link href="../css/cssreset.css" rel="stylesheet" />
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/main.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/cbdf2b0f0e.js" crossorigin="anonymous"></script>
-    <title>NEXTGEN - Logistics and Shipment</title>
+    <title>NEXTGEN - Logistics</title>
   </head>
   <body>
-  
-  <header>
-	<!--- Navbar --->
-	<nav class="navbar navbar-expand-lg">
-		<div class="container">
-			<a class="navbar-brand text-white" href="index.php"><i class="fas fa-lg fa-shipping-fast mr-2"></i>NEXTGEN Logistics</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse" aria-controls="nvbCollapse">
-				<span class="navbar-toggler-icon"></span> 
-			</button>
-			<div class="collapse navbar-collapse" id="nvbCollapse">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active pl-1">
-						<a class="nav-link" href="../index.php"><i class="fa fa-home fa-fw mr-1"></i>Home</a>
-					</li>
-					<li class="nav-item pl-1">
-						<a class="nav-link" href="views/services.php"><i class="fa fa-th-list fa-fw mr-1"></i>Services</a>
-					</li>
-					<li class="nav-item pl-1">
-						<a class="nav-link" href="views/about.php"><i class="fa fa-info-circle fa-fw mr-1"></i>About Us</a>
-					</li>
-					<li class="nav-item pl-1">
-						<a class="nav-link" href="views/contact.php"><i class="fa fa-phone fa-fw fa-rotate-180 mr-1"></i>Contact Us</a>
-					</li>
-					<li class="nav-item bg-primary pl-1">
-						<a class="nav-link" href="views/tracking.php"><i class="fas fa-route fa-fw mr-1"></i>Track & Trace</a>
-					</li>
-					<li class="nav-item bg-danger pl-1">
-						<a class="nav-link" href="views/quotation.php"><i class="fas fa-info fa-fw mr-1"></i>Request Quote</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!--# Navbar #-->
-	</header>
+      <?php
+        include_once('header.php');
+      ?>
+      <div class="container">
+        <div class="top-content">
+                
+                <div class="inner-bgd">
+                    <div class="container w-50 mx-auto my-5 border">
+                        <div class="row">
+                            <div class="col-sm-12 form-box">
+                                <div class="form-top">
+                                    <div class="form-top-left">
+                                        <h3>Login to our site</h3>
+                                        <p>Enter your username and password to log on:</p>
+                                    </div>
+                                    <p>
+                                        <?php
+                                            if(isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count('ERRMSG_ARR') >0 ){
+                                                echo '<p class="alert-danger">' ;
+                                                    foreach($_SESSION['ERRMSG_ARR'] as $msg) {
+                                                        echo $msg;
+                                                    }
+                                                echo '</p>';
+                                                unset($_SESSION['ERRMSG_ARR']);
+                                            }
+                                        ?>
+                                    </p>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-lock"></i>
+                                    </div>
+                                </div>
+                                <div class="form-bottom">
+                                    <form role="form" action="login-exec.php" name ="login" method="POST" class="login-form">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-username">Username</label>
+                                            <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-password">Password</label>
+                                            <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
+                                        </div>
+                                        <button type="submit" class="btn btn-md text-white bg-danger">Sign in!</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+      </div>
 <?php
-    include_once("views/slider.php");
-?>
-<div class="container mt-5">
-  <div class="row">
-  <?php
-    include_once("views/content.php");
-    // include_once("views/sidebar.php");
-  ?>
-  </div>
-</div>
-<?php
-    include_once("views/map.php");
-    include_once("views/footer.php");
+    include_once('../views/footer.php');
 ?>
